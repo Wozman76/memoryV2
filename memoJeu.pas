@@ -6,7 +6,7 @@ uses memoTypes, crt;
 
 procedure initGrille(taille : Integer; var g : Grille);
 procedure modifGrille(x1, y1, x2, y2 : Integer; var g : Grille);
-//procedure ajoutScoreTableau(player : Joueur; taille : Integer; var tab : HighScores);
+procedure ajoutScoreTableau(player : Joueur; taille : Integer; var tab : HighScores);
 procedure stockageScore(player : Joueur; score : Integer; tab : Highscores; i : Integer);
 
 

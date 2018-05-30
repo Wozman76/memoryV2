@@ -7,10 +7,10 @@ uses memoJeu, memoTypes, crt, sysutils, keyboard;
 procedure difficulte(var taille : Integer);
 
 procedure jeu(taille : Integer; var score : Integer);
-//procedure afficherGrille(taille : Integer; g : Grille);
-//procedure tour(taille : Integer; g : Grille; var x1, y1, x2, y2 : Integer);
-//procedure deplacerCurseur(taille : Integer; var posX, posY : Integer);
-//procedure retournerCase(x, y : Integer; g : Grille);
+procedure afficherGrille(taille : Integer; g : Grille);
+procedure tour(taille : Integer; g : Grille; var x1, y1, x2, y2 : Integer);
+procedure deplacerCurseur(taille : Integer; var posX, posY : Integer);
+procedure retournerCase(x, y : Integer; g : Grille);
 
 procedure afficherDemarrage(var player : Joueur; var tab : Highscores; var i : Integer);
 
@@ -46,13 +46,13 @@ score := 0;
 
 initGrille(taille, g);
 
-{GotoXY(1,15);
+GotoXY(1,15);
 for y := 1 to taille do
 	begin
 	for x := 1 to taille do
 		write(g[x][y].lettre);
 	writeln;
-	end;}	
+	end;	
 
 
 
