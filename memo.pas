@@ -1,5 +1,5 @@
 program memo;
-uses memoTypes, memoIHM, memoJeu keyboard;
+uses memoTypes, memoIHM, memoJeu, keyboard;
 
 
 
