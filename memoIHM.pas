@@ -12,7 +12,7 @@ procedure tour(taille : Integer; g : Grille; var x1, y1, x2, y2 : Integer);
 procedure deplacerCurseur(taille : Integer; var posX, posY : Integer);
 procedure retournerCase(x, y : Integer; g : Grille);
 
-procedure afficherDemarrage(var player : Joueur; var tab : Highscores; var i : Integer);
+procedure afficherDemarrage(var player : Joueur; var tabF, tabD : Highscores; var nbScoresF, nbScoresD : Integer);
 
 procedure afficherScore(score : Integer);
 
@@ -203,16 +203,16 @@ begin
 end;
 
 ////////////////////////////////////////////////////
-procedure afficherDemarrage(var player : Joueur; var tab : Highscores; var i : Integer);
+procedure afficherDemarrage(var player : Joueur; var tabF, tabD : Highscores; var nbScoresF, nbScoresD : Integer);
 var fichier : File of Joueur;
 	j : Integer;
 	playerFichier : Joueur;
 	
 begin
 
-	i := 0;
-	assign(fichier, 'scores.dat');
-	if not(FileExists('scores.dat')) then
+	nbScoresF := 0;
+	assign(fichier, 'scoresF.dat');
+	if not(FileExists('scoresF.dat')) then
 	 
 		rewrite(fichier)
 		
@@ -220,19 +220,57 @@ begin
 	
 	while not(eof(fichier)) do
 		begin
-			i := i + 1;
+			nbScoresF := nbScoresF + 1;
 			read(fichier, playerFichier);
-			tab[i] := playerFichier;
+			tabF[nbScoresF] := playerFichier;
 			
 		end;
 	close(fichier);
+	
+	///
+	
+	nbScoresD := 0;
+	assign(fichier, 'scoresD.dat');
+	if not(FileExists('scoresD.dat')) then
+	 
+		rewrite(fichier)
+		
+	else reset(fichier);
+	
+	while not(eof(fichier)) do
+		begin
+			nbScoresD := nbScoresD + 1;
+			read(fichier, playerFichier);
+			tabD[nbScoresD] := playerFichier;
+			
+		end;
+	close(fichier);
+	
+	
+	
+	
+	
+	
 
 	writeln('Liste des meilleurs scores :');
 	writeln;
 
-	for j := 1 to i do
-		writeln('- ', tab[j].nom, ' : ', tab[j].score);
+	writeln('Scores faciles :');
+	writeln;
+
+	for j := 1 to nbScoresF do
+		writeln('- ', tabF[j].nom, ' : ', tabF[j].score);
+	writeln;
 		
+	GotoXY(40, 3);
+	writeln('Scores difficiles :');
+	for j := 1 to nbScoresD do
+		begin
+			GotoXY(40, 4 + j);
+			writeln('- ', tabD[j].nom, ' : ', tabD[j].score);
+		end;
+		
+	writeln;
 	writeln;
 	write('Quel est votre nom? ');
 	readln(player.nom);

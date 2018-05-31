@@ -7,7 +7,7 @@ uses memoTypes, crt;
 procedure initGrille(taille : Integer; var g : Grille);
 procedure modifGrille(x1, y1, x2, y2 : Integer; var g : Grille);
 procedure ajoutScoreTableau(player : Joueur; taille : Integer; var tab : HighScores);
-procedure stockageScore(player : Joueur; score : Integer; tab : Highscores; i : Integer);
+procedure stockageScore(player : Joueur; score : Integer; tab : Highscores; i : Integer; diff : Integer);
 
 
 
@@ -55,18 +55,21 @@ begin
 		
 end;
 
-procedure stockageScore(player : Joueur; score : Integer; tab : Highscores; i : Integer);
+procedure stockageScore(player : Joueur; score : Integer; tab : Highscores; i : Integer; diff : Integer);
 var fichier : File of Joueur;
 	j : Integer;
 	
 begin
 	player.score := score;
 	
+	if diff = 4 then
+		assign(fichier, 'scoresF.dat')
+	else assign(fichier, 'scoresD.dat');
 		
 		
 	ajoutScoreTableau(player, i, tab);
 
-	assign(fichier, 'scores.dat');
+	
 	
 	rewrite(fichier);
 	
