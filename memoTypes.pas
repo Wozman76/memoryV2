@@ -18,6 +18,7 @@ Type HighScores = array[1..10] of Joueur;
 
 
 
+
 implementation
 
 

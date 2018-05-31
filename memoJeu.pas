@@ -15,37 +15,19 @@ Implementation
 
 //////////////////////////////
 procedure initGrille(taille : Integer; var g : Grille);
-var //c : Char;
-	i,t : Integer;
+var i : Integer;
 	x, y : Word;
 	str : String;
-{begin
-	randomize;
-	for x := 1 to 4 do
-		for y := 1 to 4 do
-			g[x][y].lettre := ' ';
-
-	for c := 'a' to 'h' do
-		for i := 1 to 2 do
-			begin
-				repeat
-					x := random(taille) + 1;
-					y := random(taille) + 1;
-				until g[x][y].lettre = ' ';
-				g[x][y].lettre := c;
-			end;
-end;}
 
 begin
 	randomize;
 	str := 'aabbccddeeffgghhiijjkkllmmnnooppqqrr';
-	t := taille;
 
-	if t = 4 then
+	if taille = 4 then
 		Delete(str,17,20);
 	
-	for x := 1 to t do
-		for y := 1 to t do
+	for x := 1 to taille do
+		for y := 1 to taille do
 			begin
 				i := random(length(str)) + 1;
 				g[x][y].lettre := str[i];
@@ -76,33 +58,24 @@ end;
 procedure stockageScore(player : Joueur; score : Integer; tab : Highscores; i : Integer);
 var fichier : File of Joueur;
 	j : Integer;
-	//playerFichier : Joueur;
+	
 begin
 	player.score := score;
 	
-{
-	i := 0;
-	assign(fichier, 'scores.dat');
-	reset(fichier);
-	while not(eof(fichier)) do
-		begin
-			i := i + 1;
-			read(fichier, playerFichier);
-			tab[i] := playerFichier;
-			
-		end;
-	close(fichier);
-}
 		
 		
 	ajoutScoreTableau(player, i, tab);
 
 	assign(fichier, 'scores.dat');
+	
 	rewrite(fichier);
+	
 	if i >= 5 then
 		i := 4;
+		
 	for j := 1 to i+1 do
 		write(fichier, tab[j]);
+		
 	close(fichier);
 
 

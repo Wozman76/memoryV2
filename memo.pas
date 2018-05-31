@@ -3,21 +3,22 @@ uses memoTypes, memoIHM, memoJeu, keyboard;
 
 
 
-var taille, score : Integer;
+var tailleGrille, score : Integer;
 	player : Joueur;
-	tab : Highscores;
-	i : Integer;
+	tabScore : Highscores;
+	tailleTabScore : Integer;
 
 
 	
 BEGIN
 
-afficherDemarrage(player, tab, i);
-InitKeyBoard();
-difficulte(taille);
-jeu(taille, score);
-afficherScore(score);
-DoneKeyboard();
-stockageScore(player, score, tab, i);
+	afficherDemarrage(player, tabScore, tailleTabScore);
+	InitKeyBoard();
+	difficulte(tailleGrille);
+	jeu(tailleGrille, score);
+	afficherScore(score);
+	DoneKeyboard();
+	
+	stockageScore(player, score, tabScore, tailleTabScore);
 
 END.
